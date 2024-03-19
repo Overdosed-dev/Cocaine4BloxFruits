@@ -19,8 +19,8 @@ local isfile = isfile or function(file)
 end
 local setidentity = syn and syn.set_thread_identity or set_thread_identity or setidentity or setthreadidentity or function() end
 local getidentity = syn and syn.get_thread_identity or get_thread_identity or getidentity or getthreadidentity or function() return 0 end
-local vapeAssetTable = {
-	["vape/assets/AddItem.png"] = "rbxassetid://13350763121",
+local CocaineAssets = {
+	["cocaine/assets/AddItem.png"] = "rbxassetid://13350763121",
 	["vape/assets/AddRemoveIcon1.png"] = "rbxassetid://13350764147",
 	["vape/assets/ArrowIndicator.png"] = "rbxassetid://13350766521",
 	["vape/assets/BackIcon.png"] = "rbxassetid://13350767223",
