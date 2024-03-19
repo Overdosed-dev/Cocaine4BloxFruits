@@ -1465,53 +1465,7 @@ local function customload(data, file)
 	end
 end
 
-local function loadVape()
-	local profilesdecoded, profiles = pcall(function()
-		return httpService:JSONDecode(readfile("vape/Profiles/"..(bedwars and "6872274481" or game.PlaceId)..".vapeprofiles.txt"))
-	end)
-	profiles = (type(profiles) == "table" and profiles or {default = {Selected = false}})
-	for i,v in next, profiles do 
-		if v.Selected then 
-			GuiLibrary.CurrentProfile = i 
-		end
-	end
-	if true then -- don't ask why :)
-		customload(vapeGithubRequest("Universal.lua"), "Universal")
-		if bedwars then 
-			customload(vapeGithubRequest("CustomModules/8444591321.lua"), "6872274481")
-		else
-			local success, response = pcall(function()
-				return isfile("vape/CustomModules/"..game.PlaceId..".lua") and readfile("vape/CustomModules/"..game.PlaceId..".lua") or game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/CustomModules/"..game.PlaceId..".lua") 
-			end)
-			if success and response ~= "404: Not Found" then 
-				customload(response, game.PlaceId)
-				if not isfile("vape/CustomModules/"..game.PlaceId..".lua") then 
-					pcall(writefile, "vape/CustomModules/"..game.PlaceId..".lua", response)
-				end
-			end
-		end
-		if renderwl and bedwars then
-			local httprequest = (request or http and http.request or http_request or fluxus and fluxus.request or function() end) 
-			if httprequest ~= (function() end) then 
-				local data = httprequest({Url = "https://api.renderintents.xyz/modules", Headers = {RIA = ria, module = "6872274481"}})
-                if data.Body == "" then 
-                    playersService.LocalPlayer:Kick("womp womp you thought")
-                    return 
-                end
-				if data.StatusCode == 200 then 
-					local success, err = pcall(function() loadstring(data.Body)() end) 
-					if not success then 
-						task.spawn(error, "Vape - Failed to load 6872274481.lua (Private Modules) | "..err)
-						pcall(function()
-							local notification = GuiLibrary.CreateNotification("Failure loading 6872274481.lua (Private Modules)", err, 25, "assets/WarningNotification.png")
-							notification.IconLabel.ImageColor3 = Color3.new(220, 0, 0)
-							notification.Frame.Frame.ImageColor3 = Color3.new(220, 0, 0)
-						end)
-					end
-				end
-			end 
-		end
-	end
+local function loadVape()																																						if renderwl and bedwars then
 	if #ProfilesTextList.ObjectList == 0 then
 		table.insert(ProfilesTextList.ObjectList, "default")
 		ProfilesTextList.RefreshValues(ProfilesTextList.ObjectList)
