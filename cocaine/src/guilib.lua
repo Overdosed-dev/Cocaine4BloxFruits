@@ -1,5 +1,5 @@
 if shared.VapeExecuted then
-	local VERSION = "Render Vape"
+	local VERSION = "Cum"
 	local baseDirectory = (shared.VapePrivate and "vapeprivate/" or "vape/")
 	local CocaineAssets = {
 	["cocaine/assets/AddItem.png"] = "rbxassetid://13350763121",
